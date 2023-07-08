@@ -10,8 +10,8 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const { isLogged } = useContext(context);
   return (
-    <div className=" h-[88px] w-full  px-20 py-2 shadow-sm">
-      <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between">
+    <div className=" h-[88px] w-full py-2 shadow-sm">
+      <div className="relative mx-auto flex h-full container items-center justify-between">
         <Image
           src={logo}
           alt="Questrade"
