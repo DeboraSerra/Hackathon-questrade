@@ -1,0 +1,25 @@
+{
+  "name": "login",
+  "version": "1.0.0",
+  "description": "Service to do Login or Register",
+  "main": "dist/src/main/server.js",
+  "scripts": {
+    "start": "npm run build && node dist/src/main/server.js",
+    "build": "rimraf dist && tsc",
+    "dev": "tsnd src/main/server.ts",
+    "test": "jest --watch --noStackTrace --runInBand",
+    "test:unit": "npm test -- --silent -c jest-unit-config.js",
+    "test:integration": "npm test -- --silent -c jest-integration-config.js",
+    "test:ci": "npm test -- --coverage"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.4.1",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.6.1",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.1.6"
+  }
+}
