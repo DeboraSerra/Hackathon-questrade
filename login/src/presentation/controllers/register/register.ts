@@ -1,9 +1,4 @@
-import { Register } from "../../../domain/useCases/register/register";
-import { ValidateRegisterBody } from "../../../domain/useCases/register/validate-register-body/validate-register-body";
-import { badRequest, ok, serverError } from "../../helpers/http-helper";
-import { Controller, HttpRequest, HttpResponse } from "../../protocols";
-import { InvalidParamError } from '../../errors/invalid-param-error';
-import { MissingParamError } from '../../errors/missing-param-error';
+import { Controller, HttpRequest, HttpResponse, InvalidParamError, MissingParamError, Register, ValidateRegisterBody, badRequest, created, serverError } from "./register-protocols";
 
 export class RegisterController implements Controller {
   constructor(
@@ -24,7 +19,7 @@ export class RegisterController implements Controller {
       }
 
       const userPayload = await this.registerService.handle(user);
-      return ok(userPayload);
+      return created(userPayload);
     } catch (error) {
       return serverError();
     }
