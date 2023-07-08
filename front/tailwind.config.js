@@ -3,12 +3,12 @@ module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Open Sans, Arial, Helvetica, Sans serif',
+        sans: 'var(--font-open-sans)',
         alt: 'var(--font-roboto)',
       },
       colors: {
@@ -37,8 +37,8 @@ module.exports = {
           900: '#0d5210',
         },
         blue: {
-          50: '#c5d4e0',
-          100: '#198aee',
+          50: '#f2f2f8',
+          100: '#0066db',
           200: '#2783d3',
           300: '#317dc0',
           400: '#3974a7',
