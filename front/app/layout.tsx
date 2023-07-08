@@ -1,7 +1,8 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Roboto_Slab as Roboto } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={roboto.variable}>{children}</body>
     </html>
   )
 }
