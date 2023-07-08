@@ -21,8 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} ${openSans.variable}`}>
         <Provider>
-          <Header />
-          {children}
+          <main className="min-h-screen">
+            <Header />
+            {children}
+          </main>
         </Provider>
       </body>
     </html>
