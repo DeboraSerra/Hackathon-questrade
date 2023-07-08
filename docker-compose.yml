@@ -16,6 +16,7 @@ services:
   login:
     container_name: app_login
     build: ./login
+    command: npm start
     ports:
       - 3001:3001
     platform: linux/x86_64
