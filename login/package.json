@@ -21,5 +21,8 @@
     "supertest": "^6.3.3",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "zod": "^3.21.4"
   }
 }
