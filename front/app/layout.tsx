@@ -1,8 +1,10 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './globals.css'
-import { Roboto_Slab as Roboto } from 'next/font/google'
+import { Roboto_Slab as Roboto, Open_Sans as OpenSans } from 'next/font/google'
+import Header from "@/components/Header";
 
 const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto' })
+const openSans = OpenSans({ subsets: ['latin'], variable: '--font-open-sans' })
 
 export const metadata = {
   title: 'Create Next App',
@@ -16,7 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.variable}>{children}</body>
+      <body className={`${roboto.variable} ${openSans.variable}`}>
+        <Header />
+        {children}
+      </body>
     </html>
   )
 }
