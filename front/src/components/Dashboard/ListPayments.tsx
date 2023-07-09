@@ -13,7 +13,6 @@ const Payments = () => {
     let newList = [];
     if (["pending", "payed", "expired"].includes(value)) {
       newList = paymentList.filter(({ status }) => status === value);
-      console.log({ value, newList });
     } else newList = paymentList;
     setList(newList);
   };

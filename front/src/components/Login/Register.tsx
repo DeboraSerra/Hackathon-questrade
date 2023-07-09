@@ -1,4 +1,5 @@
 "use client";
+import { context } from "@/lib/context";
 import {
   parseCpf,
   parsePhone,
@@ -15,10 +16,9 @@ import {
 } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Spinner from "../CommonLayout/Spinner";
-import { context } from "@/lib/context";
 
 const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
-  const { register } = useContext(context)
+  const { register } = useContext(context);
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -30,6 +30,7 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
     proofOfIncome: "",
   });
   const [hasError, setHasError] = useState<boolean | string>(false);
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -43,7 +44,11 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
       phone: form.phone,
       proofOfIncome: form.proofOfIncome,
     };
-    await register(payload)
+    const response = await register(payload);
+    if (response) {
+      setError(response);
+      return;
+    }
     router.push("/dashboard");
   };
 
@@ -57,7 +62,6 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
       const isValid = validateCpf(value);
       value = parseCpf(value);
       isValid ? setHasError(false) : setHasError("cpf");
-      console.log({ name, value, isValid, hasError });
     }
     if (name === "password") {
       const isValid = validatePassword(value);
@@ -78,8 +82,9 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
     <Suspense fallback={<Spinner />}>
       <form
         onSubmit={handleSubmit}
-        className="my-3 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
+        className="relative my-3 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
       >
+        {error ? <small className="absolute bottom-32">{error}</small> : null}
         <h2 className="text-lg font-bold">Cadastro</h2>
         <label htmlFor="name" className="flex flex-col gap-2 text-sm">
           Nome

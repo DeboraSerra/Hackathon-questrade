@@ -59,13 +59,13 @@ export const context = createContext({
 
 export default function Provider({ children }: { children: ReactNode }) {
   const [isLogged, setIsLogged] = useState(false);
-  const [paymentList, setPaymentList] = useState([]);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     phone: "",
     cpf: "",
   });
+  const [paymentList, setPaymentList] = useState<ListInterface[]>([]);
   const [paymentInfo, setPaymentInfo] = useState({
     totalPayed: 0,
     payedQuotas: 0,
@@ -93,6 +93,11 @@ export default function Provider({ children }: { children: ReactNode }) {
       phone: user?.phone,
       cpf: parseCpf(user?.cpf),
     });
+    if (user.cpf === '82550666089') {
+      setPaymentList(mockList)
+    } else {
+      setPaymentList([])
+    }
   };
 
   const login = async (payload: LoginPayload) => {
