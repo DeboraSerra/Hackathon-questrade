@@ -9,6 +9,8 @@ services:
     depends_on:
       login:
         condition: service_healthy
+    environment:
+      - NEXT_PUBLIC_API_PORT=3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
@@ -40,7 +42,7 @@ services:
     container_name: db
     platform: linux/x86_64
     ports:
-      - 3002:3306
+      - 3006:3306
     environment:
       - MYSQL_ROOT_PASSWORD=123456
     restart: 'always'

@@ -1,5 +1,14 @@
 "use client";
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
+import {
+  LoginPayload,
+  RegisterPayload,
+  UpdateProfilePayload,
+} from "./interfaces";
+import { api } from "./api";
+import { getUser } from "./auth";
+import { parseCpf } from "./helpers";
+import { useRouter } from "next/navigation";
 
 interface ListInterface {
   description: string;
@@ -41,16 +50,21 @@ export const context = createContext({
   paymentList: [] as ListInterface[],
   userInfo: { name: "", email: "", phone: "", cpf: "" },
   paymentInfo: { totalPayed: 0, payedQuotas: 0, totalQuotas: 0, total: 0 },
+  login: async (payload: LoginPayload): Promise<string | void> => {},
+  register: async (payload: RegisterPayload): Promise<string | void> => {},
+  updateProfile: async (
+    payload: UpdateProfilePayload
+  ): Promise<string | void> => {},
 });
 
 export default function Provider({ children }: { children: ReactNode }) {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const [paymentList, setPaymentList] = useState([]);
   const [userInfo, setUserInfo] = useState({
-    name: "Diego Cavalcanti",
-    email: "diego.cavalcanti@mail.com",
-    phone: "11 98765-4321",
-    cpf: "000.000.000-00",
+    name: "",
+    email: "",
+    phone: "",
+    cpf: "",
   });
   const [paymentInfo, setPaymentInfo] = useState({
     totalPayed: 0,
@@ -59,12 +73,75 @@ export default function Provider({ children }: { children: ReactNode }) {
     total: 0,
   });
 
+  const router = useRouter();
+
+  useEffect(() => {
+    saveUserInfo();
+  }, []);
+
+  const saveUserInfo = () => {
+    const user = getUser();
+    if (!user) {
+      setIsLogged(false);
+      router.push("/");
+      return null;
+    }
+    setIsLogged(true)
+    setUserInfo({
+      name: user?.name,
+      email: user?.email,
+      phone: user?.phone,
+      cpf: parseCpf(user?.cpf),
+    });
+  };
+
+  const login = async (payload: LoginPayload) => {
+    try {
+      const {
+        data: { token },
+      } = await api.post("/user/login", payload);
+      localStorage.setItem("token", token);
+      setIsLogged(true);
+      saveUserInfo();
+    } catch (e) {
+      return "E-mail ou senha incorretos";
+    }
+  };
+
+  const register = async (payload: RegisterPayload) => {
+    try {
+      const {
+        data: { token },
+      } = await api.post("/user/register", payload);
+      localStorage.setItem("token", token);
+      setIsLogged(true);
+      saveUserInfo();
+    } catch (e) {
+      console.error(e)
+      return "Algumas informações estão erradas";
+    }
+  };
+
+  const updateProfile = async (payload: UpdateProfilePayload) => {
+    try {
+      const { cpf, ...user } = payload;
+      const { data: { token } } = await api.put(`/user/${cpf}`, user);
+      localStorage.setItem('token', token)
+      saveUserInfo()
+    } catch (e) {
+      return "Algo deu errado. Tente novamente mais tarde";
+    }
+  };
+
   const value = {
     isLogged,
     setIsLogged,
     paymentList,
     userInfo,
     paymentInfo,
+    login,
+    register,
+    updateProfile,
   };
   return <context.Provider value={value}>{children}</context.Provider>;
 }

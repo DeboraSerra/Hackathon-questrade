@@ -3,8 +3,8 @@ FROM node:18.12-alpine
 
 WORKDIR /login
 
-COPY ./package.json .
+COPY ./package* .
 
-RUN npm install --omit=dev
+RUN npm install
 
 COPY . .
