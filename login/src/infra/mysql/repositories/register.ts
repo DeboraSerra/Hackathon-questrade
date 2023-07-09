@@ -1,4 +1,4 @@
-import { OkPacket, ResultSetHeader } from "mysql2";
+import { ResultSetHeader } from "mysql2";
 import { RegisterRepositorie } from "../../../data/repositories/register";
 import { UserRegister } from "../../../domain/models";
 import { connection } from "../configs/connection";
