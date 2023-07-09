@@ -44,7 +44,6 @@ export class UpdateRepositorieAdapter implements UpdateRepositorie {
     await connection.execute<ResultSetHeader>(query, values);
     query = "SELECT * FROM UserDb.users WHERE cpf = ?";
     const [[user]] = await connection.execute<RowDataPacket[]>(query, [cpf]);
-    console.log({ user, query, cpf });
     return user as unknown as UserRegister;
   }
 }

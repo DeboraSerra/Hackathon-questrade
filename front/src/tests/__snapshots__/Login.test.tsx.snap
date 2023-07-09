@@ -3,7 +3,7 @@
 exports[`Test the login page Should match the snapshot 1`] = `
 <div>
   <form
-    class="mt-10 flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
+    class="mt-10 flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 max-sm:mx-3 max-sm:w-full relative"
   >
     <h2
       class="text-lg font-bold"
@@ -12,14 +12,14 @@ exports[`Test the login page Should match the snapshot 1`] = `
     </h2>
     <label
       class="flex flex-col gap-2 text-sm"
-      for="email"
+      for="cpf"
     >
-      E-mail
+      CPF
       <input
         class="rounded-md border-none bg-gray-50"
-        id="email"
-        name="email"
-        type="email"
+        id="cpf"
+        name="cpf"
+        type="text"
         value=""
       />
     </label>
