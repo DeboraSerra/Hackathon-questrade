@@ -16,7 +16,7 @@ const FooterColumn: NextPage<Props> = ({ linksList, title }) => {
   return (
     <div className="flex flex-col gap-1 text-white max-sm:min-w-[150px]">
       <h2
-        className="mb-3 text-lg font-bold max-sm:flex max-sm:items-center max-sm:justify-center max-sm:gap-2 max-sm:cursor-pointer max-sm:w-full max-sm:text-left"
+        className="mb-3 text-lg font-bold max-sm:flex max-sm:w-full max-sm:cursor-pointer max-sm:items-center max-sm:justify-center max-sm:gap-2 max-sm:text-left"
         onClick={() => setIsOpen(!isOpen)}
       >
         {title}
@@ -25,6 +25,7 @@ const FooterColumn: NextPage<Props> = ({ linksList, title }) => {
       {width > 640 || isOpen
         ? linksList.map(({ text, link, icon }, index) => (
             <Link
+              key={index}
               href={link}
               className={
                 icon

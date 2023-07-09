@@ -15,16 +15,17 @@ export class LoginController implements Controller {
 
     try {
       const validateResponse = await this.validateLoginBodyService.handle(user);
-
-      if (validateResponse.error === 'InvalidParam') {
+      
+      if (validateResponse.error && validateResponse.error === 'InvalidParam') {
         return badRequest(new InvalidParamError(validateResponse.param, validateResponse.message));
-      } else if (validateResponse.error === 'MissingParam') {
+      } else if (validateResponse.error && validateResponse.error === 'MissingParam') {
         return badRequest(new MissingParamError(validateResponse.param));
       }
-
+      
       const userPayload = await this.loginService.handle(user);
       return ok(userPayload);
     } catch (error) {
+      console.error(error)
       return serverError();
     }
   }

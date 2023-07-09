@@ -9,6 +9,8 @@ services:
     depends_on:
       login:
         condition: service_healthy
+    environment:
+      - NEXT_PUBLIC_API_PORT=3001
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s

@@ -8,7 +8,7 @@ export class DeleteController implements Controller {
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const cpf = httpRequest.params;
+    const { cpf } = httpRequest;
 
     if (!cpf) {
       return badRequest(new MissingParamError("cpf"));
@@ -21,6 +21,7 @@ export class DeleteController implements Controller {
 
       return noContent();
     } catch (error) {
+      console.error(error)
       return serverError();
     }
   }

@@ -37,6 +37,7 @@ const HeaderMenu = ({
         href="/"
         className="text-gray-900 hover:underline"
         onClick={() => {
+          localStorage.removeItem('token')
           setIsLogged(false)
           setTimeout(() => { setOpenMenu(false)}, 100)
         }}

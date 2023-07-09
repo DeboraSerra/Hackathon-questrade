@@ -18,7 +18,7 @@ O design da nossa aplicação foi majoritariamente feito pela [Naiane Reis](http
 
 A conclusão do design e a aplicação do que foi montado no Figma foi desenvolvido por [Débora Serra](https://github.com/DeboraSerra) e [Diego Cavalcanti](https://github.com/diegotimao).
 
-Os testes foram desenvolvidos por [Márcio Lembi](https://github.com/Marcio-Lembi-Teles).
+Os cenários de testes foram desenvolvidos por [Márcio Lembi](https://github.com/Marcio-Lembi-Teles) e os testes foram implementados por [Diego Cavalcanti](https://github.com/diegotimao) e [Débora Serra](https://github.com/DeboraSerra) 
 
 # Funcionamento da aplicação
 
@@ -103,6 +103,7 @@ Para o suporte ao cliente foi adicionado o ChatBot da [Tidio](https://www.tidio.
 # Próximos passos
 
 Os próximos passos da aplicação são:
+* Desenvolver e implementar o serviço de solicitação e controle de empréstimos, sendo que foi iniciado utilizando express.js e MongoDB, porém não foi possível finalizar.
 * Adicionar a foto de perfil da pessoa usuária
 * Receber documento de comprovação de renda e fazer a confirmação da informação recebida
 * Adicionar opção de editar a informação de renda
