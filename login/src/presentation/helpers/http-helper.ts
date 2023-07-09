@@ -35,3 +35,10 @@ export const created = (result: any): HttpResponse => {
     body: result
   }
 }
+
+export const noContent = (): HttpResponse => {
+  return {
+    statusCode: 204,
+    body: "No Content"
+  }
+}
