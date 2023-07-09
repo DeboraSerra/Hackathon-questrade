@@ -37,7 +37,7 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 mt-40 max-sm:w-full max-sm:mx-3"
+      className="flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 mt-10 max-sm:w-full max-sm:mx-3"
     >
       <h2 className="text-lg font-bold">Login</h2>
       <label htmlFor="email" className="flex flex-col gap-2 text-sm">

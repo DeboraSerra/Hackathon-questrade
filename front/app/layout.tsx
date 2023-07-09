@@ -3,6 +3,7 @@ import Provider from "../src/lib/context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Open_Sans as OpenSans, Roboto_Slab as Roboto } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });
 const openSans = OpenSans({ subsets: ["latin"], variable: "--font-open-sans" });
@@ -21,9 +22,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.variable} ${openSans.variable}`}>
         <Provider>
-          <main className="min-h-screen">
+          <main className="min-h-screen flex flex-col">
             <Header />
-            {children}
+            <div className="grow py-8">{children}</div>
+            <Footer />
           </main>
         </Provider>
         <script
