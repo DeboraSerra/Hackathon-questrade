@@ -10,3 +10,8 @@ export const RegisterSchema = z.object({
   proofOfIncome: z.string(),
   phone: z.string().length(13)
 }).required();
+
+export const LoginSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8).regex(REGEX),
+}).required();
