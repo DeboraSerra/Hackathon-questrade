@@ -15,8 +15,7 @@ const HTTP_REQUEST: HttpRequest = {
 }
 
 const USER_PAYLOAD: UserPayload = {
-  cpf: "any_cpf",
-  email: "any@mail.com"
+  token: "any_token"
 }
 
 const VALIDATE_RESPONSE: ValidateResponse = {
