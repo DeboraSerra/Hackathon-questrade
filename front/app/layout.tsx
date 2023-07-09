@@ -1,7 +1,7 @@
-import Header from "../src/components/Header";
-import Provider from "../src/lib/context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Open_Sans as OpenSans, Roboto_Slab as Roboto } from "next/font/google";
+import Header from "../src/components/CommonLayout/Header";
+import Provider from "../src/lib/context";
 import "./globals.css";
 
 const roboto = Roboto({ subsets: ["latin"], variable: "--font-roboto" });

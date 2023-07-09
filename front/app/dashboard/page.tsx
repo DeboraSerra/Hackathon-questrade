@@ -1,5 +1,5 @@
-import Cards from "../../src/components/Cards"
-import Payments from "../../src/components/ListPayments"
+import Cards from "../../src/components/Dashboard/Cards";
+import Payments from "../../src/components/Dashboard/ListPayments";
 
 const Dashboard = () => {
   return (
@@ -7,7 +7,7 @@ const Dashboard = () => {
       <Cards />
       <Payments />
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
