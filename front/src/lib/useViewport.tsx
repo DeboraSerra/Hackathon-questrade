@@ -8,8 +8,8 @@ interface WindowSize {
 
 export function useViewport(): WindowSize {
   const [windowSize, setWindowSize] = useState<WindowSize>({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: 1200,
+    height: 1200,
   });
 
   const handleSize = () => {
