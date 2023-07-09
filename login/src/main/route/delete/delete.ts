@@ -3,5 +3,5 @@ import { expressAdapter } from "../../adapter/express-adapter";
 import { makeDeleteController } from "../../factories/delete";
 
 export default (router: Router): void => {
-  router.delete("/user/", expressAdapter(makeDeleteController()));
+  router.delete("/user/:cpf", expressAdapter(makeDeleteController()));
 }
