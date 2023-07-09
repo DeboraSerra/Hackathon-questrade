@@ -8,7 +8,7 @@
 
 	DESENVOLVER UMA PLATAFORMA ONLINE QUE PERMITA AOS USUÁRIOS SOLICITAREM EMPRÉSTIMOS E RECEBER DESCISÕES INSTANTÂNEAS COM BASE NA PONTUAÇÃO DE CRÉDITO.
 
-3) Plano de Te3stes e Cenários de Testes conforme parâmetros estipulados no escopo do projeto e nas funcionalidades do produto.
+3) Plano de Testes e Cenários de Testes conforme parâmetros estipulados no escopo do projeto e nas funcionalidades do produto.
 
   Objetivo: Desenvolver os cenários de testes conforme escopo do projeto para que possam eliminar ou mitigar possíveis erros no desenvolvimento da aplicação. 
 
