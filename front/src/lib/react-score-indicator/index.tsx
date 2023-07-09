@@ -1,6 +1,6 @@
 // A biblioteca react-score-indicator não é mantida desde 2020 e não foi possível instalar,
 // sendo assim, pegamos o código e passamos para typescript com atualizações pertinentes, para
-// podermos utilizá-la e pretendemos abrir um pull requeste no repositório original para sugerir
+// podermos utilizá-la e pretendemos abrir um pull request no repositório original para sugerir
 // a atualização no código fonte
 
 import { NextPage } from "next";
