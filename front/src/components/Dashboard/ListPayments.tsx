@@ -17,7 +17,7 @@ const Payments = () => {
     setList(newList);
   };
   return (
-    <div className="mx-auto h-40 max-w-7xl items-center p-10">
+    <div className="mx-auto max-w-7xl items-center p-10">
       <div className="flex items-center justify-between max-sm:flex-wrap-reverse">
         <h1 className="text-2xl font-semibold">Faturas</h1>
         <select
