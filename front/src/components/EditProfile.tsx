@@ -11,10 +11,12 @@ import {
   useState,
 } from "react";
 import Spinner from "./CommonLayout/Spinner";
+import { parsePhone } from "@/lib/helpers";
 
 const EditProfile = () => {
   const {
     userInfo: { name, email, phone, cpf },
+    updateProfile,
   } = useContext(context);
   const [form, setForm] = useState({
     name,
@@ -22,23 +24,38 @@ const EditProfile = () => {
     phone,
     cpf,
   });
+  const [error, setError] = useState('')
 
   const router = useRouter();
 
-  const handleSubmit: FormEventHandler = (e) => {
+  const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      cpf: form.cpf.replace(/\W/g, ''),
+    }
+    const response = await updateProfile(payload)
+    if (response) {
+      setError(response)
+      return
+    }
     router.push("/dashboard");
   };
 
   useEffect(() => {}, []);
 
   const handleChange: ChangeEventHandler = (e) => {
+    setError('')
     const { name } = e.target as HTMLInputElement;
     let { value } = e.target as HTMLInputElement;
-    value = value.replace(/\D/g, "");
+    if (name === 'phone') {
+      value = parsePhone(value)
+    }
     setForm((prev) => ({
       ...prev,
-      [name]: +value,
+      [name]: value,
     }));
   };
 
@@ -46,8 +63,9 @@ const EditProfile = () => {
     <Suspense fallback={<Spinner />}>
       <form
         onSubmit={handleSubmit}
-        className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
+        className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5 relative"
       >
+        {error? <small className="absolute bottom-1">{error}</small> : null}
         <h1 className="text-lg font-bold">Atualizar dados cadastrais</h1>
         <label
           htmlFor="name"

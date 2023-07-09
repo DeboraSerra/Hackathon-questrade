@@ -86,11 +86,12 @@ export default function Provider({ children }: { children: ReactNode }) {
       router.push("/");
       return null;
     }
+    console.log({user})
     setUserInfo({
       name: user?.name,
       email: user?.email,
       phone: user?.phone,
-      cpf: parseCpf(user.cpf),
+      cpf: parseCpf(user?.cpf),
     });
   };
 
@@ -123,7 +124,9 @@ export default function Provider({ children }: { children: ReactNode }) {
   const updateProfile = async (payload: UpdateProfilePayload) => {
     try {
       const { cpf, ...user } = payload;
-      await api.put(`/user/${cpf}`, user);
+      const { data: { token } } = await api.put(`/user/${cpf}`, user);
+      localStorage.setItem('token', token)
+      saveUserInfo()
     } catch (e) {
       return "Algo deu errado. Tente novamente mais tarde";
     }
