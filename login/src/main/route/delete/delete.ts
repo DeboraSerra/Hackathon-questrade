@@ -1,7 +1,7 @@
 import { Router } from "express"
 import { expressAdapter } from "../../adapter/express-adapter";
-import { makeUpdateController } from "../../factories/update";
+import { makeDeleteController } from "../../factories/delete";
 
 export default (router: Router): void => {
-  router.put("/user/", expressAdapter(makeUpdateController()));
+  router.delete("/user/", expressAdapter(makeDeleteController()));
 }
