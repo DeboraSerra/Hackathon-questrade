@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+// A biblioteca react-score-indicator não é mantida desde 2020 e não foi possível instalar,
+// sendo assim, pegamos o código e passamos para typescript com atualizações pertinentes, para
+// podermos utilizá-la e pretendemos abrir um pull requeste no repositório original para sugerir
+// a atualização no código fonte
 
-// components
-import Score from "./components/Score";
 import { NextPage } from "next";
-
-// import styles from './styles.css';
+import Score from "./components/Score";
 
 const DEFAULT_STEP_COLORS = [
   "#d12000",
@@ -53,4 +52,4 @@ const ReactScoreIndicator: NextPage<Props> = (props) => {
   );
 };
 
-export default ReactScoreIndicator
+export default ReactScoreIndicator;

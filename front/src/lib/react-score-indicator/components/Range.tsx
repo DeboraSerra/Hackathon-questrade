@@ -3,7 +3,6 @@
 import React, { useEffect } from "react";
 
 import hex2rgba from "../utils/hex2rgba";
-// import styles from "@/lib/react-score-indicator/styles.css";
 import { NextPage } from "next";
 
 interface Props {

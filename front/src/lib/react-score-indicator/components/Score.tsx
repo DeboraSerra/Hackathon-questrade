@@ -1,10 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import Range from "./Range";
 import { NextPage } from "next";
-
-// import styles from '../styles.css';
+import Range from "./Range";
 
 interface Props {
   value: string | number;
