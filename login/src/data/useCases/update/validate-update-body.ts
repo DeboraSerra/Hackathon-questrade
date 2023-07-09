@@ -1,11 +1,11 @@
-import { UserLogin, ValidateResponse } from "../../../domain/models";
-import { ValidateLoginBody } from "../../../domain/useCases/login/validate-login-body";
+import { UserUpdate, ValidateResponse } from "../../../domain/models";
+import { ValidateUpdateBody } from "../../../domain/useCases/update/validate-update-body";
 import { validateCpf } from "../../../utils/validate-cpf";
-import { LoginSchema } from "../../../utils/zod/zod-schemas";
+import { UpdateSchema } from "../../../utils/zod/zod-schemas";
 
-export class ValidateLoginBodyAdapter implements ValidateLoginBody {
-  async handle(user: UserLogin): Promise<ValidateResponse> {
-    const result = LoginSchema.safeParse(user);
+export class ValidateUpdateBodyAdapter implements ValidateUpdateBody {
+  async handle(user: UserUpdate): Promise<ValidateResponse> {
+    const result = UpdateSchema.safeParse(user);
 
     if (result.success === false) {
       const { code, message, path } = result.error.issues[0];

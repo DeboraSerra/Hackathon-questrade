@@ -1,20 +1,21 @@
-import { Login } from "../../../domain/useCases/login/login";
-import { ValidateLoginBody } from "../../../domain/useCases/login/validate-login-body";
+import { Update } from "../../../domain/useCases/update/update";
+import { ValidateUpdateBody } from "../../../domain/useCases/update/validate-update-body";
 import { InvalidParamError, MissingParamError } from "../../errors";
-import { badRequest, ok, serverError } from "../../helpers/http-helper";
 import { Controller, HttpRequest, HttpResponse } from "../../protocols";
+import { badRequest, created, serverError } from "../register/register-protocols";
 
-export class LoginController implements Controller {
+export class UpdateController implements Controller {
   constructor(
-    private loginService: Login,
-    private validateLoginBodyService: ValidateLoginBody,
+    private updateService: Update,
+    private validateupdateBodyService: ValidateUpdateBody,
   ) {}
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const user = httpRequest.body;
+    const cpf = httpRequest.params;
 
     try {
-      const validateResponse = await this.validateLoginBodyService.handle(user);
+      const validateResponse = await this.validateupdateBodyService.handle(user);
 
       if (validateResponse.error === 'InvalidParam') {
         return badRequest(new InvalidParamError(validateResponse.param, validateResponse.message));
@@ -22,10 +23,11 @@ export class LoginController implements Controller {
         return badRequest(new MissingParamError(validateResponse.param));
       }
 
-      const userPayload = await this.loginService.handle(user);
-      return ok(userPayload);
+      const userPayload = await this.updateService.handle(user);
+      return created(userPayload);
     } catch (error) {
       return serverError();
     }
   }
+
 }

@@ -5,9 +5,9 @@ import { UserLogin, UserRegister } from "../../../domain/models";
 
 export class LoginRepositorieAdapter implements LoginRepositorie {
 
-  async handle({ email, password }: UserLogin): Promise<UserRegister> {
-    const query = 'SELECT * FROM users WHERE (email, password) = (?, ?);';
-    const user = await connection.execute<ResultSetHeader>(query, [email,password]);
+  async handle({ cpf, password }: UserLogin): Promise<UserRegister> {
+    const query = 'SELECT * FROM users WHERE (cpf, password) = (?, ?);';
+    const user = await connection.execute<ResultSetHeader>(query, [cpf,password]);
     return user as unknown as UserRegister;
   }
 }
