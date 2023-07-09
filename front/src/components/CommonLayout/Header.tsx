@@ -10,7 +10,10 @@ import prifileUser from "../../assets/prifile-user.png";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const { isLogged } = useContext(context);
+  const {
+    isLogged,
+    userInfo: { name },
+  } = useContext(context);
   const router = useRouter();
   return (
     <div className=" h-[75px] w-full py-2 shadow-sm">
@@ -26,14 +29,23 @@ const Header = () => {
           }}
         />
         <button
-          className="flex gap-2 items-center justify-center rounded-full"
+          className={`flex items-center justify-center gap-2 rounded-full ${!isLogged ? 'bg-slate-200 h-11 w-11' : ''}`}
           onClick={() => {
             if (isLogged) setOpenMenu(!openMenu);
           }}
         >
-          <span className="font-semibold">Diego Cavalcanti</span>
-          <Image src={prifileUser} className="h-11 w-11" alt="Profile user" />
-          {isLogged ? null : <AiOutlineUser className="text-4xl" />}
+          {isLogged ? (
+            <>
+              <span className="font-semibold">{name}</span>
+              <Image
+                src={prifileUser}
+                className="h-11 w-11"
+                alt="Profile user"
+              />
+            </>
+          ) : (
+            <AiOutlineUser className="text-4xl" />
+          )}
         </button>
         {openMenu && (
           <HeaderMenu setOpenMenu={setOpenMenu} openMenu={openMenu} />
