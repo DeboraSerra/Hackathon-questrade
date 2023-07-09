@@ -1,21 +1,26 @@
 "use client";
+import { context } from "@/lib/context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ChangeEventHandler,
   FormEventHandler,
   Suspense,
+  useContext,
   useEffect,
   useState,
 } from "react";
 import Spinner from "./CommonLayout/Spinner";
 
 const EditProfile = () => {
+  const {
+    userInfo: { name, email, phone, cpf },
+  } = useContext(context);
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    cpf: "000.000.000-00",
+    name,
+    email,
+    phone,
+    cpf,
   });
 
   const router = useRouter();
@@ -25,14 +30,7 @@ const EditProfile = () => {
     router.push("/dashboard");
   };
 
-  useEffect(() => {
-    setForm((prev) => ({
-      ...prev,
-      name: "Xuxa da Silva",
-      email: "xuxa.silva@email.com",
-      phone: "11 98765-4321",
-    }));
-  }, []);
+  useEffect(() => {}, []);
 
   const handleChange: ChangeEventHandler = (e) => {
     const { name } = e.target as HTMLInputElement;

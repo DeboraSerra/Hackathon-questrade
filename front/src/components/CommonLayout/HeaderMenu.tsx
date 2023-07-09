@@ -27,16 +27,19 @@ const HeaderMenu = ({
 
   return (
     <div
-      className="absolute right-0 top-[80px] flex w-[100px] flex-col rounded-sm bg-white p-2 shadow-md"
+      className="absolute right-0 top-[60px] flex w-[100px] flex-col rounded-sm bg-white p-2 shadow-md"
       ref={menu}
     >
-      <Link href="/profile" className="text-gray-900 hover:underline">
+      <Link href="/profile" className="text-gray-900 hover:underline" onClick={() => setTimeout(() => { setOpenMenu(false)}, 200)}>
         Perfil
       </Link>
       <Link
         href="/"
         className="text-gray-900 hover:underline"
-        onClick={() => setIsLogged(false)}
+        onClick={() => {
+          setIsLogged(false)
+          setTimeout(() => { setOpenMenu(false)}, 100)
+        }}
       >
         Sair
       </Link>
