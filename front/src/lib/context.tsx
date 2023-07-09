@@ -86,7 +86,7 @@ export default function Provider({ children }: { children: ReactNode }) {
       router.push("/");
       return null;
     }
-    console.log({user})
+    setIsLogged(true)
     setUserInfo({
       name: user?.name,
       email: user?.email,
