@@ -1,11 +1,21 @@
 "use client";
 import NewLoanForm from "@/components/NewLoanForm";
+import { context } from "@/lib/context";
 import ReactScoreIndicator from "@/lib/react-score-indicator";
 import { useViewport } from "@/lib/useViewport";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 
 const NewLoan = () => {
   const { width } = useViewport();
+  const { isLogged } = useContext(context)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLogged) {
+      router.push('/')
+    }
+  }, [])
   return (
     <div className="w-full container flex flex-wrap-reverse justify-between px-40 align-top max-lg:flex-col-reverse max-lg:items-center max-lg:justify-center max-md:px-2">
       <NewLoanForm />

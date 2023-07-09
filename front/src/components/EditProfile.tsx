@@ -1,18 +1,19 @@
-"use client";
+'use client'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
+import React, {
   ChangeEventHandler,
   FormEventHandler,
   useEffect,
   useState,
 } from "react";
 
-const NewLoanForm = () => {
+const EditProfile = () => {
   const [form, setForm] = useState({
-    loan: 0,
-    quotas: 0,
-    valueQuota: 0,
+    name: '',
+    email: '',
+    phone: '',
+    cpf: '000.000.000-00',
   });
 
   const router = useRouter();
@@ -25,9 +26,11 @@ const NewLoanForm = () => {
   useEffect(() => {
     setForm((prev) => ({
       ...prev,
-      valueQuota: form.quotas ? form.loan / form.quotas : form.loan,
+      name: 'Xuxa da Silva',
+      email: 'xuxa.silva@email.com',
+      phone: '11 98765-4321'
     }));
-  }, [form.loan, form.quotas]);
+  }, []);
 
   const handleChange: ChangeEventHandler = (e) => {
     const { name } = e.target as HTMLInputElement;
@@ -44,59 +47,74 @@ const NewLoanForm = () => {
       onSubmit={handleSubmit}
       className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
     >
-      <h1 className="text-lg font-bold">Solicitar empréstimo</h1>
+      <h1 className="text-lg font-bold">Atualizar dados cadastrais</h1>
       <label
-        htmlFor="loan"
+        htmlFor="name"
         className="relative flex w-full flex-col gap-2 text-sm"
       >
-        Valor do empréstimo
+        Nome
         <input
           type="text"
-          name="loan"
-          id="loan"
-          value={form.loan}
+          name="name"
+          id="name"
+          value={form.name}
           onChange={handleChange}
-          className="rounded-md border-none bg-gray-50 pl-6"
+          className="rounded-md border-none bg-gray-50"
         />
-        <span className="absolute top-[38px] ml-1">R$</span>
       </label>
-      <label htmlFor="quotas" className="flex flex-col gap-2 text-sm">
-        Número de parcelas
+      <label htmlFor="email" className="flex flex-col gap-2 text-sm">
+        E-mail
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value={form.email}
+          onChange={handleChange}
+          className="rounded-md border-none bg-gray-50"
+        />
+      </label>
+      <label htmlFor="text" className="flex flex-col gap-2 text-sm">
+        Telefone
         <input
           type="text"
-          name="quotas"
-          id="quotas"
-          value={form.quotas}
+          name="phone"
+          id="phone"
+          value={form.phone}
           onChange={handleChange}
           className="rounded-md border-none bg-gray-50"
         />
       </label>
       <label
-        htmlFor="valueQuota"
+        htmlFor="cpf"
         className="relative flex flex-col gap-2 text-sm"
       >
-        Valor da parcela
+        CPF
         <input
           type="text"
-          name="valueQuota"
-          id="valueQuota"
-          value={form.valueQuota.toFixed(2).replace(".", ",")}
+          name="cpf"
+          id="cpf"
+          value={form.cpf}
           onChange={handleChange}
-          className="rounded-md border-none bg-gray-50 pl-6"
+          className="rounded-md border-none bg-gray-50"
+          disabled
         />
-        <span className="absolute top-[38px] ml-1">R$</span>
       </label>
       <div className="flex">
-        <Link href="/dashboard" className="rounded-md bg-gray-200 px-6 py-2.5 font-sans text-sm font-semibold text-gray-600 mr-2">CANCELAR</Link>
+        <Link
+          href="/dashboard"
+          className="mr-2 rounded-md bg-gray-200 px-6 py-2.5 font-sans text-sm font-semibold text-gray-600"
+        >
+          CANCELAR
+        </Link>
         <button
           type="submit"
-          className="rounded-md grow bg-green-600 px-6 py-2.5 font-sans text-sm font-semibold text-white"
+          className="grow rounded-md bg-green-600 px-6 py-2.5 font-sans text-sm font-semibold text-white"
         >
-          SOLICITAR
+          ATUALIZAR
         </button>
       </div>
     </form>
   );
 };
 
-export default NewLoanForm;
+export default EditProfile;
