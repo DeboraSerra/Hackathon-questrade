@@ -8,7 +8,8 @@ const USER_REGISTER: UserRegister = {
   email: "any@mail.com",
   password: "any_password",
   proofOfIncome: "any_proof",
-  phone: "any_phone"
+  phone: "any_phone",
+  name: "any_name"
 }
 
 const USER_PAYLOAD: UserPayload = {
@@ -18,7 +19,8 @@ const USER_PAYLOAD: UserPayload = {
 const USER_SIGN: UserSign = {
   cpf: USER_REGISTER.cpf,
   email: USER_REGISTER.email,
-  phone: USER_REGISTER.phone
+  phone: USER_REGISTER.phone,
+  name: USER_REGISTER.name
 }
 
 interface SutTypes {

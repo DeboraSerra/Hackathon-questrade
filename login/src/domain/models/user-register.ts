@@ -1,4 +1,6 @@
 export interface UserRegister {
+  name: string;
+  
   // XXXXXXXXXXX
   cpf: string;
 

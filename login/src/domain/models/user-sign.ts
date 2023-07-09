@@ -1,4 +1,5 @@
 export interface UserSign {
+  name: string;
   cpf: string;
   email: string;
   phone: string;

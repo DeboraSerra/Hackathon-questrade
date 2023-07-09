@@ -10,11 +10,11 @@ export class RegisterAdapter implements Register {
   ) {}
 
   async handle(user: UserRegister): Promise<UserPayload> {
-    const { email, cpf, phone } = user;
+    const { email, cpf, phone, name } = user;
     
     await this.repositorie.handle(user);
 
-    const token = this.jwtSign.handle({ email, cpf, phone });
+    const token = this.jwtSign.handle({ email, cpf, phone, name });
 
     return {
       token
