@@ -7,7 +7,7 @@ export const context = createContext({
 });
 
 export default function Provider({ children }: { children: ReactNode }) {
-  const [isLogged, setIsLogged] = useState(false)
+  const [isLogged, setIsLogged] = useState(true)
   const value = {
     isLogged,
     setIsLogged,

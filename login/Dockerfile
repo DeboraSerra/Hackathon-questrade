@@ -1,7 +1,10 @@
-FROM node:16.14-alpine
-RUN npm i -g rimraf
-WORKDIR /app-login
-COPY package* ./
-RUN npm install
-COPY . ./
-CMD ["npm", "start"]
+
+FROM node:18.12-alpine
+
+WORKDIR /login
+
+COPY ./package.json .
+
+RUN npm install --omit=dev
+
+COPY . .
