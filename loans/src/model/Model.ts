@@ -1,8 +1,5 @@
-import { Model as MongoModel, UpdateQuery, isValidObjectId } from "mongoose";
+import { Model as MongoModel, UpdateQuery } from "mongoose";
 import { IModel } from "../interfaces/IModel";
-import CodeError from "../middlewares/error";
-
-const invalidId = "Id must have 24 hexadecimal characters";
 
 export default class Model<T> implements IModel<T> {
   protected _model: MongoModel<T>;
@@ -11,8 +8,8 @@ export default class Model<T> implements IModel<T> {
   }
 
   public async readOne(cpf: string): Promise<T | null> {
-    const loans = await this._model.findOne({ _id: cpf });
-    return loans;
+    const loan = await this._model.findOne({ _id: cpf });
+    return loan;
   }
 
   public async update(cpf: string, obj: T): Promise<T | null> {
