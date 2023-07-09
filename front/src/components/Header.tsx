@@ -1,6 +1,6 @@
 "use client";
-import logo from "@/assets/Questrade-Logo-Primary-Black-Medium.svg";
-import { context } from "@/lib/context";
+import logo from "../assets/Questrade-Logo-Primary-Black-Medium.svg";
+import { context } from "../lib/context";
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
