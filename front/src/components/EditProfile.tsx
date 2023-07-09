@@ -95,7 +95,7 @@ const EditProfile = () => {
           id="cpf"
           value={form.cpf}
           onChange={handleChange}
-          className="rounded-md border-none bg-gray-50"
+          className="rounded-md border-none bg-gray-50 disabled:bg-gray-100/70"
           disabled
         />
       </label>

@@ -1,19 +1,19 @@
 "use client";
-import logo from "../assets/Questrade-Logo-Primary-Black-Medium.svg";
-import { context } from "../lib/context";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useContext, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { context } from "../../lib/context";
 import HeaderMenu from "./HeaderMenu";
-import { useRouter } from "next/navigation";
+import logo from "../../assets/Questrade-Logo-Primary-Black-Medium.svg";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const { isLogged } = useContext(context);
-  const router = useRouter()
+  const router = useRouter();
   return (
     <div className=" h-[88px] w-full py-2 shadow-sm">
-      <div className="relative mx-auto flex h-full container items-center justify-between">
+      <div className="container relative mx-auto flex h-full items-center justify-between">
         <Image
           src={logo}
           alt="Questrade"
@@ -21,7 +21,7 @@ const Header = () => {
           height={140}
           className="max-h-full w-auto cursor-pointer"
           onClick={() => {
-            router.push('/')
+            router.push("/");
           }}
         />
         <button

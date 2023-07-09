@@ -1,5 +1,5 @@
 'use client'
-import Login from '@/components/Login'
+import Login from '@/components/Login/Login'
 import { context } from '@/lib/context'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
