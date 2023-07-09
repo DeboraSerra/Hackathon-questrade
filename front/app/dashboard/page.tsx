@@ -1,5 +1,17 @@
-const Dashboard = () => {
-  return <div>Rastreio de pagamentos</div>
-}
+import Spinner from "@/components/CommonLayout/Spinner";
+import { Suspense } from "react";
+import Cards from "../../src/components/Dashboard/Cards";
+import Payments from "../../src/components/Dashboard/ListPayments";
 
-export default Dashboard
+const Dashboard = () => {
+  return (
+    <div className="container">
+      <Suspense fallback={<Spinner />}>
+        <Cards />
+        <Payments />
+      </Suspense>
+    </div>
+  );
+};
+
+export default Dashboard;
