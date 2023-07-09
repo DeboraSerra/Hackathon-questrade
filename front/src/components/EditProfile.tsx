@@ -1,19 +1,22 @@
 'use client'
+import { context } from "@/lib/context";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, {
   ChangeEventHandler,
   FormEventHandler,
+  useContext,
   useEffect,
   useState,
 } from "react";
 
 const EditProfile = () => {
+  const { userInfo: { name, email, phone, cpf } } = useContext(context)
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    cpf: '000.000.000-00',
+    name,
+    email,
+    phone,
+    cpf,
   });
 
   const router = useRouter();
@@ -24,12 +27,7 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    setForm((prev) => ({
-      ...prev,
-      name: 'Xuxa da Silva',
-      email: 'xuxa.silva@email.com',
-      phone: '11 98765-4321'
-    }));
+
   }, []);
 
   const handleChange: ChangeEventHandler = (e) => {
