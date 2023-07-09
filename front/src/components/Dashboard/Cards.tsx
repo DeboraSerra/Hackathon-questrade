@@ -20,8 +20,8 @@ const Cards = () => {
           R$ 100.00
         </strong>
       </div>
-      <div className="h-[120px] rounded-md border border-slate-50 bg-slate-300/30 p-3">
-        <h3 className="font-s font-semibold">Score</h3>
+      <div className="h-[120px] rounded-md border border-slate-50 bg-slate-300/30 p-3 relative">
+        <h3 className="font-s font-semibold absolute">Score</h3>
         <div className="flex h-full w-full items-center justify-center">
           <ReactScoreIndicator
             value={500}
