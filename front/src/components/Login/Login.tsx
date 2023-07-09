@@ -16,7 +16,7 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [register, setRegister] = useState(false);
   const [form, setForm] = useState({
-    email: "",
+    cpf: "",
     password: "",
   });
   const { setIsLogged } = useContext(context);
@@ -48,13 +48,13 @@ const Login = () => {
         className="mt-10 flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
       >
         <h2 className="text-lg font-bold">Login</h2>
-        <label htmlFor="email" className="flex flex-col gap-2 text-sm">
-          E-mail
+        <label htmlFor="cpf" className="flex flex-col gap-2 text-sm">
+          CPF
           <input
-            type="email"
-            name="email"
-            id="email"
-            value={form.email}
+            type="text"
+            name="cpf"
+            id="cpf"
+            value={form.cpf}
             onChange={handleChange}
             className="rounded-md border-none bg-gray-50"
           />
