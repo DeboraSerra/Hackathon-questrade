@@ -5,19 +5,24 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import HeaderMenu from "./HeaderMenu";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const { isLogged } = useContext(context);
+  const router = useRouter()
   return (
-    <div className=" h-[88px] w-full  px-20 py-2 shadow-sm">
-      <div className="relative mx-auto flex h-full max-w-7xl items-center justify-between">
+    <div className=" h-[88px] w-full py-2 shadow-sm">
+      <div className="relative mx-auto flex h-full container items-center justify-between">
         <Image
           src={logo}
           alt="Questrade"
           width={300}
           height={140}
-          className="max-h-full w-auto"
+          className="max-h-full w-auto cursor-pointer"
+          onClick={() => {
+            router.push('/')
+          }}
         />
         <button
           className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-50"
