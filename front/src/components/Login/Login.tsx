@@ -51,6 +51,7 @@ const Login = () => {
         <label htmlFor="cpf" className="flex flex-col gap-2 text-sm">
           CPF
           <input
+            data-testid="login-input-cpf"
             type="text"
             name="cpf"
             id="cpf"
@@ -65,6 +66,7 @@ const Login = () => {
         >
           Senha
           <input
+            data-testid="login-input-password"
             type={show ? "text" : "password"}
             name="password"
             id="password"
@@ -81,6 +83,7 @@ const Login = () => {
           </button>
         </label>
         <button
+          data-testid="login-btn-send"
           type="submit"
           className="rounded-md bg-green-600 px-6 py-2.5 font-sans text-sm font-semibold text-white"
         >
