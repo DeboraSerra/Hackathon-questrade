@@ -1,6 +1,6 @@
 "use client";
-import logo from "@/assets/Questrade-Logo-Primary-Black-Medium.svg";
-import { context } from "@/lib/context";
+import logo from "../assets/Questrade-Logo-Primary-Black-Medium.svg";
+import { context } from "../lib/context";
 import Image from "next/image";
 import { useContext } from "react";
 import { AiOutlineUser } from "react-icons/ai";
@@ -8,7 +8,7 @@ import { AiOutlineUser } from "react-icons/ai";
 const Header = () => {
   const { isLogged } = useContext(context);
   return (
-    <div className=" h-[88px] w-full  px-20 py-2 shadow-sm">
+    <div className="h-[88px] w-full  px-20 py-2 shadow-sm">
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between">
         <Image
           src={logo}
