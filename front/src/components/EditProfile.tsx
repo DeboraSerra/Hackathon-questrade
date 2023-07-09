@@ -45,7 +45,7 @@ const EditProfile = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
+      className="my-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
     >
       <h1 className="text-lg font-bold">Atualizar dados cadastrais</h1>
       <label

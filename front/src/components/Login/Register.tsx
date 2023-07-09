@@ -12,6 +12,7 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
 const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
   const [show, setShow] = useState(false);
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -56,9 +57,20 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-2 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:w-full max-sm:mx-3"
+      className="my-3 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
     >
       <h2 className="text-lg font-bold">Cadastro</h2>
+      <label htmlFor="name" className="flex flex-col gap-2 text-sm">
+        Nome
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={form.name}
+          onChange={handleChange}
+          className="rounded-md border-none bg-gray-50"
+        />
+      </label>
       <label htmlFor="email" className="flex flex-col gap-2 text-sm">
         E-mail
         <input
@@ -84,7 +96,7 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
           } bg-gray-50 focus:outline-none`}
         />
         {hasError === "cpf" && (
-          <small className="absolute -bottom-4 lh-1">
+          <small className="lh-1 absolute -bottom-4">
             CPF precisa ser um número válido
           </small>
         )}
@@ -135,9 +147,9 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
           {show ? <BsEyeSlash /> : <BsEye />}
         </button>
         {hasError === "password" && (
-          <small className="absolute -bottom-6 lh-1">
-            Senha precisa conter 1 letra minúscula, 1 letra
-            maiúscula, 1 número e 1 símbolo
+          <small className="lh-1 absolute -bottom-6">
+            Senha precisa conter 1 letra minúscula, 1 letra maiúscula, 1 número
+            e 1 símbolo
           </small>
         )}
       </label>
@@ -164,7 +176,7 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
           {show ? <BsEyeSlash /> : <BsEye />}
         </button>
         {hasError === "confirmPassword" && (
-          <small className="absolute -bottom-4 lh-1">
+          <small className="lh-1 absolute -bottom-4">
             As senhas precisam ser iguais
           </small>
         )}
@@ -175,7 +187,7 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
       >
         CADASTRAR
       </button>
-      <p className="font-sans text-xs text-center">
+      <p className="text-center font-sans text-xs">
         Já sou cadastrado.{" "}
         <a
           className="cursor-pointer text-blue-100 underline"

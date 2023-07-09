@@ -44,7 +44,7 @@ export const context = createContext({
 
 export default function Provider({ children }: { children: ReactNode }) {
   const [isLogged, setIsLogged] = useState(true)
-  const [paymentList, setPaymentList] = useState([])
+  const [paymentList, setPaymentList] = useState(mockList)
   
   const value = {
     isLogged,
