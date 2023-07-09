@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 export const createDB = "CREATE DATABASE IF NOT EXISTS UserDb;"
 
-export const createTable = `CREATE TABLE UserDb.users (
+export const createTable = `CREATE TABLE IF NOT EXISTS UserDb.users (
   cpf varchar(11) NOT NULL UNIQUE PRIMARY KEY,
   name varchar(100) NOT NULL,
   email varchar(100) NOT NULL UNIQUE,
