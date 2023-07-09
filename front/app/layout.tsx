@@ -26,6 +26,10 @@ export default function RootLayout({
             {children}
           </main>
         </Provider>
+        <script
+          src="//code.tidio.co/daskhsnbjp6a2hc8whmbjgzqysdjkw5a.js"
+          async
+        ></script>
       </body>
     </html>
   );
