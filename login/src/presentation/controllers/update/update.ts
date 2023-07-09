@@ -12,20 +12,20 @@ export class UpdateController implements Controller {
 
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const user = httpRequest.body;
-    const cpf = httpRequest.params;
+    const cpf = httpRequest.cpf;
 
     try {
-      const validateResponse = await this.validateUpdateBodyService.handle({ cpf, ...user });
-
+      const validateResponse = await this.validateUpdateBodyService.handle({ ...user, cpf });
       if (validateResponse.error === 'InvalidParam') {
         return badRequest(new InvalidParamError(validateResponse.param, validateResponse.message));
       } else if (validateResponse.error === 'MissingParam') {
         return badRequest(new MissingParamError(validateResponse.param));
       }
 
-      const userPayload = await this.updateService.handle(user);
+      const userPayload = await this.updateService.handle({ ...user, cpf });
       return ok(userPayload);
     } catch (error) {
+      console.error(error)
       return serverError();
     }
   }

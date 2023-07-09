@@ -1,4 +1,4 @@
-import { ResultSetHeader } from "mysql2";
+import { ResultSetHeader, RowDataPacket } from "mysql2";
 import { UpdateRepositorie } from "../../../data/repositories/update";
 import { UserRegister, UserUpdate } from "../../../domain/models";
 import { connection } from "../configs/connection";
@@ -16,28 +16,29 @@ export class UpdateRepositorieAdapter implements UpdateRepositorie {
     proofOfIncome,
   }: UserUpdate): Promise<UserRegister> {
 
-    let query = "UPDATE UserDb.users SET";
+    let query = "UPDATE UserDb.users SET ";
+    const params = []
     const values = []
     if (email) {
-      query += ' email = ?'
+      params.push('email = ?')
       values.push(email)
     } if (name) {
-      query += ' name = ?'
+      params.push('name = ?')
       values.push(name)
     }if (phone) {
-      query += ' phone = ?'
+      params.push('phone = ?')
       values.push(phone)
     }if (password) {
-      query += ' password = ?'
+      params.push('password = ?')
       values.push(password)
     }if (proofOfIncome) {
-      query += ' proofOfIncome = ?'
+      params.push('proofOfIncome = ?')
       values.push(proofOfIncome)
     }
+    query += params.join(', ')
     query += ' WHERE cpf = ?'
     values.push(cpf)
-
-    const users = await connection.execute<ResultSetHeader>(query, values);
-    return users as unknown as UserRegister;
+    const user = await connection.execute<ResultSetHeader>(query, values);
+    return user as unknown as UserRegister;
   }
 }

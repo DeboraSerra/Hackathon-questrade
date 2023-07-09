@@ -23,4 +23,4 @@ export const UpdateSchema = z.object({
   password: z.string().min(8).regex(REGEX).optional(),
   proofOfIncome: z.string().optional(),
   phone: z.string().length(13).optional()
-}).required();
+});
