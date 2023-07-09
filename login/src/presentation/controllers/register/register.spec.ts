@@ -7,7 +7,8 @@ const USER_REGISTER: UserRegister = {
   email: "any@mail.com",
   password: "any_password",
   proofOfIncome: "any_proof",
-  phone: "any_phone"
+  phone: "any_phone",
+  name: "any_name"
 }
 
 const HTTP_REQUEST: HttpRequest = {

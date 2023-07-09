@@ -5,6 +5,7 @@ export default {
   db_host: process.env.DB_HOST,
   db_port: process.env.DB_PORT,
   db_pass: process.env.DB_PASS,
+  db_name: "UserDb",
   port: process.env.APP_PORT,
   jwt_secret: process.env.JWT_SECRET,
 }
