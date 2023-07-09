@@ -4,9 +4,11 @@ import { useRouter } from "next/navigation";
 import {
   ChangeEventHandler,
   FormEventHandler,
+  Suspense,
   useEffect,
   useState,
 } from "react";
+import Spinner from "./CommonLayout/Spinner";
 
 const NewLoanForm = () => {
   const [form, setForm] = useState({
@@ -40,62 +42,69 @@ const NewLoanForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
-    >
-      <h1 className="text-lg font-bold">Solicitar empréstimo</h1>
-      <label
-        htmlFor="loan"
-        className="relative flex w-full flex-col gap-2 text-sm"
+    <Suspense fallback={<Spinner />}>
+      <form
+        onSubmit={handleSubmit}
+        className="mt-20 flex w-[400px] flex-col justify-between gap-6 border px-3 py-4 max-md:w-full max-md:px-5"
       >
-        Valor do empréstimo
-        <input
-          type="text"
-          name="loan"
-          id="loan"
-          value={form.loan}
-          onChange={handleChange}
-          className="rounded-md border-none bg-gray-50 pl-6"
-        />
-        <span className="absolute top-[38px] ml-1">R$</span>
-      </label>
-      <label htmlFor="quotas" className="flex flex-col gap-2 text-sm">
-        Número de parcelas
-        <input
-          type="text"
-          name="quotas"
-          id="quotas"
-          value={form.quotas}
-          onChange={handleChange}
-          className="rounded-md border-none bg-gray-50"
-        />
-      </label>
-      <label
-        htmlFor="valueQuota"
-        className="relative flex flex-col gap-2 text-sm"
-      >
-        Valor da parcela
-        <input
-          type="text"
-          name="valueQuota"
-          id="valueQuota"
-          value={form.valueQuota.toFixed(2).replace(".", ",")}
-          onChange={handleChange}
-          className="rounded-md border-none bg-gray-50 pl-6"
-        />
-        <span className="absolute top-[38px] ml-1">R$</span>
-      </label>
-      <div className="flex">
-        <Link href="/dashboard" className="rounded-md bg-gray-200 px-6 py-2.5 font-sans text-sm font-semibold text-gray-600 mr-2">CANCELAR</Link>
-        <button
-          type="submit"
-          className="rounded-md grow bg-green-600 px-6 py-2.5 font-sans text-sm font-semibold text-white"
+        <h1 className="text-lg font-bold">Solicitar empréstimo</h1>
+        <label
+          htmlFor="loan"
+          className="relative flex w-full flex-col gap-2 text-sm"
         >
-          SOLICITAR
-        </button>
-      </div>
-    </form>
+          Valor do empréstimo
+          <input
+            type="text"
+            name="loan"
+            id="loan"
+            value={form.loan}
+            onChange={handleChange}
+            className="rounded-md border-none bg-gray-50 pl-6"
+          />
+          <span className="absolute top-[38px] ml-1">R$</span>
+        </label>
+        <label htmlFor="quotas" className="flex flex-col gap-2 text-sm">
+          Número de parcelas
+          <input
+            type="text"
+            name="quotas"
+            id="quotas"
+            value={form.quotas}
+            onChange={handleChange}
+            className="rounded-md border-none bg-gray-50"
+          />
+        </label>
+        <label
+          htmlFor="valueQuota"
+          className="relative flex flex-col gap-2 text-sm"
+        >
+          Valor da parcela
+          <input
+            type="text"
+            name="valueQuota"
+            id="valueQuota"
+            value={form.valueQuota.toFixed(2).replace(".", ",")}
+            onChange={handleChange}
+            className="rounded-md border-none bg-gray-50 pl-6"
+          />
+          <span className="absolute top-[38px] ml-1">R$</span>
+        </label>
+        <div className="flex">
+          <Link
+            href="/dashboard"
+            className="mr-2 rounded-md bg-gray-200 px-6 py-2.5 font-sans text-sm font-semibold text-gray-600"
+          >
+            CANCELAR
+          </Link>
+          <button
+            type="submit"
+            className="grow rounded-md bg-green-600 px-6 py-2.5 font-sans text-sm font-semibold text-white"
+          >
+            SOLICITAR
+          </button>
+        </div>
+      </form>
+    </Suspense>
   );
 };
 
