@@ -56,7 +56,7 @@ const Register = ({ setRegister }: { setRegister: (val: boolean) => void }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-10 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:w-full max-sm:mx-3"
+      className="mt-2 flex w-[400px] flex-col justify-between gap-4 border px-3 py-4 max-sm:w-full max-sm:mx-3"
     >
       <h2 className="text-lg font-bold">Cadastro</h2>
       <label htmlFor="email" className="flex flex-col gap-2 text-sm">
