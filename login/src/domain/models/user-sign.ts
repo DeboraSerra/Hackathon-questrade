@@ -3,3 +3,7 @@ export interface UserSign {
   email: string;
   phone: string;
 }
+
+export interface JwtSign {
+  handle(user: UserSign): string;
+}
