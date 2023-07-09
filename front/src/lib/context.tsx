@@ -117,6 +117,7 @@ export default function Provider({ children }: { children: ReactNode }) {
       setIsLogged(true);
       saveUserInfo();
     } catch (e) {
+      console.error(e)
       return "Algumas informações estão erradas";
     }
   };
