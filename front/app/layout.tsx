@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import Provider from "@/lib/context";
+import Header from "../src/components/Header";
+import Provider from "../src/lib/context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Open_Sans as OpenSans, Roboto_Slab as Roboto } from "next/font/google";
 import "./globals.css";
