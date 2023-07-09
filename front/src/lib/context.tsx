@@ -1,9 +1,14 @@
 "use client";
 import { ReactNode, createContext, useEffect, useState } from "react";
-import { LoginPayload, RegisterPayload, UpdateProfilePayload } from "./interfaces";
+import {
+  LoginPayload,
+  RegisterPayload,
+  UpdateProfilePayload,
+} from "./interfaces";
 import { api } from "./api";
 import { getUser } from "./auth";
-import { parseCpf } from './helpers';
+import { parseCpf } from "./helpers";
+import { useRouter } from "next/navigation";
 
 interface ListInterface {
   description: string;
@@ -45,9 +50,11 @@ export const context = createContext({
   paymentList: [] as ListInterface[],
   userInfo: { name: "", email: "", phone: "", cpf: "" },
   paymentInfo: { totalPayed: 0, payedQuotas: 0, totalQuotas: 0, total: 0 },
-  login: (payload: LoginPayload) => {},
-  register: (payload: RegisterPayload) => {},
-  updateProfile: (payload: UpdateProfilePayload) => {},
+  login: async (payload: LoginPayload): Promise<string | void> => {},
+  register: async (payload: RegisterPayload): Promise<string | void> => {},
+  updateProfile: async (
+    payload: UpdateProfilePayload
+  ): Promise<string | void> => {},
 });
 
 export default function Provider({ children }: { children: ReactNode }) {
@@ -66,42 +73,61 @@ export default function Provider({ children }: { children: ReactNode }) {
     total: 0,
   });
 
+  const router = useRouter();
+
   useEffect(() => {
-    saveUserInfo()
-  }, [])
+    saveUserInfo();
+  }, []);
 
   const saveUserInfo = () => {
-    const user = getUser()
+    const user = getUser();
     if (!user) {
-      setIsLogged(false)
-      return null
+      setIsLogged(false);
+      router.push("/");
+      return null;
     }
     setUserInfo({
       name: user?.name,
       email: user?.email,
       phone: user?.phone,
       cpf: parseCpf(user.cpf),
-    })
-  }
+    });
+  };
 
   const login = async (payload: LoginPayload) => {
-    const { data: { token } } = await api.post('/user/login', payload)
-    localStorage.setItem('token', token)
-    setIsLogged(true)
-    saveUserInfo()
-  }
+    try {
+      const {
+        data: { token },
+      } = await api.post("/user/login", payload);
+      localStorage.setItem("token", token);
+      setIsLogged(true);
+      saveUserInfo();
+    } catch (e) {
+      return "E-mail ou senha incorretos";
+    }
+  };
 
   const register = async (payload: RegisterPayload) => {
-    const { data: { token } } = await api.post('/user/register', payload)
-    localStorage.setItem('token', token)
-    setIsLogged(true)
-    saveUserInfo()
-  }
+    try {
+      const {
+        data: { token },
+      } = await api.post("/user/register", payload);
+      localStorage.setItem("token", token);
+      setIsLogged(true);
+      saveUserInfo();
+    } catch (e) {
+      return "Algumas informações estão erradas";
+    }
+  };
 
   const updateProfile = async (payload: UpdateProfilePayload) => {
-    const { cpf, ...user } = payload;
-    await api.put(`/user/${cpf}`, user)
-  }
+    try {
+      const { cpf, ...user } = payload;
+      await api.put(`/user/${cpf}`, user);
+    } catch (e) {
+      return "Algo deu errado. Tente novamente mais tarde";
+    }
+  };
 
   const value = {
     isLogged,

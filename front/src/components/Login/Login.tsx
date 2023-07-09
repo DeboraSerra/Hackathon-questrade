@@ -11,6 +11,7 @@ import {
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import Spinner from "../CommonLayout/Spinner";
 import Register from "./Register";
+import { parseCpf, validateCpf } from "@/lib/helpers";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -19,18 +20,37 @@ const Login = () => {
     cpf: "",
     password: "",
   });
-  const { setIsLogged } = useContext(context);
+  const [error, setError] = useState('')
+  const { login } = useContext(context);
 
   const router = useRouter();
 
-  const handleSubmit: FormEventHandler = (e) => {
+  const handleSubmit: FormEventHandler = async (e) => {
     e.preventDefault();
-    setIsLogged(true);
+    const isValidCpf = validateCpf(form.cpf)
+    if (!isValidCpf) {
+      setError('Digite um cpf válido')
+      return
+    }
+    const payload = {
+      cpf: form.cpf.replace(/\W/g, ''),
+      password: form.password,
+    }
+    const response = await login(payload)
+    if (response) {
+      setError(response)
+      return
+    }
     router.push("/dashboard");
   };
 
   const handleChange: ChangeEventHandler = (e) => {
-    const { value, name } = e.target as HTMLInputElement;
+    setError('')
+    const { name } = e.target as HTMLInputElement;
+    let { value } = e.target as HTMLInputElement;
+    if (name === 'cpf') {
+      value = parseCpf(value)
+    }
     setForm((prev) => ({
       ...prev,
       [name]: value,
@@ -44,9 +64,10 @@ const Login = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-10 flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 max-sm:mx-3 max-sm:w-full"
+      className="mt-10 flex w-[400px] flex-col justify-between gap-10 border px-3 py-4 max-sm:mx-3 max-sm:w-full relative"
     >
       <h2 className="text-lg font-bold">Login</h2>
+      {error? <small className="absolute bottom-32">{error}</small> : null}
       <label htmlFor="cpf" className="flex flex-col gap-2 text-sm">
         CPF
         <input
